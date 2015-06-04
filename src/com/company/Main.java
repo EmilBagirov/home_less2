@@ -9,21 +9,49 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
+        int age = 0,weight = 0, height = 0,girth = 0;
+        String name = null;
+        Scanner sc = new Scanner(System.in);
         Person [] persons = new Person [3];
         AdultBicycle [] bike = new AdultBicycle[4];
 
-        Scanner in = new Scanner(System.in);
-        for (int i=0; i<persons.length; i++) {
-            for (int j=0; j<bike.length;j++) {
-                System.out.println("Введите данные пользователя # "+i+"и велосипеда # "+j);
-                persons [i]=in.nextLine();
-                bike [j]=in.nextLine();
+        for (Person person:persons) {
+            System.out.print("������� ������ ������������� # " + person + ": �������, ����, ���, ������, ���");
+            if (sc.hasNextInt()) {
+                age = sc.nextInt();
+                weight = sc.nextInt();
+                height = sc.nextInt();
+                girth = sc.nextInt();
+                name = sc.nextLine();
             }
+            persons[person] = age+"|"+weight+"|"+height+"|"+girth+"|"+name;
         }
 
-        int a=in.nextLine();
+        for (Person person:persons) {
+            for (AdultBicycle mountainBike:bike) {
+                if (mountainBike instanceof AdultBicycle) {
+                    AdultBicycle mountain = null;
+                    mountain.burnedCalories(person);
+                }
+                System.out.println("Burned calories in mountain Bike " + mountainBike);
+            }
+        }
+        /*
 
+         int n,arr[];
+            Scanner in = new Scanner(System.in);
+            System.out.print("Введите размер массива: ");
+            n = in.nextInt();
+            arr = new int [n];
+            for (int i=0;i<arr.length;i++)
+                    arr[i] = (int) ( Math.random() * n);
+            for (int i: arr)
+                    System.out.print( i + " " );
+
+         int i = 2;
+        System.out.print("Введите целое число: ");
+        if(sc.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+          i = sc.nextInt(); // считывает целое число
 
         Person person1 = new Person(30,180,70,50,"Emil");
         Person person2 = new Person(35,190,80,40,"Vitya");
@@ -50,28 +78,13 @@ public class Main {
         int calories5 = road2.burnedCalories(person2);
         int calories6 = road3.burnedCalories(person3);
 
-
-        /*String reader_string=read.nextLine();
-
-        //vvod strok
-        Person [] persons = new Person [3];
-        for (int i=0; i<persons.length;i++) {
-            persons[i] = reader.readLine();
-        }
-
-        //vuvod strok
-        for (int i=0; i<persons.length; i++) {
-            int j = persons.length-i-1;
-            System.out.println(persons[j]);
-        }*/
-
-
         System.out.println("Person1 on mountain1 burns " + calories1+" calories");
         System.out.println("Person2 on mountain2 burns " + calories2+" calories");
         System.out.println("Person3 on mountain3 burns " + calories3+" calories");
         System.out.println("Person1 on road1 burns " + calories4+" calories");
         System.out.println("Person2 on road2 burns " + calories5+" calories");
         System.out.println("Person3 on road3 burns " + calories6+" calories");
-
+        System.out.println("end");
+        */
     }
 }
