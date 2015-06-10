@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 /**
  * Created by bagirov on 21.05.2015.
  */
@@ -53,7 +55,5 @@ public class Person {
         this.weight=weight;
         this.girth=girth;
         this.name=name;
-
     }
-
 }
