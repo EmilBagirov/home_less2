@@ -48,7 +48,7 @@ public class Main {
                 }
         }
 
-/*
+
     private static void parseBikes(AdultBicycle[] bike, Scanner sc) {
         int i = 0;
         while (sc.hasNextLine()) {
@@ -84,6 +84,6 @@ public class Main {
                 }
             }
         }
-    }*/
+    }
 }
 
