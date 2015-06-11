@@ -48,12 +48,20 @@ public class Person {
         this.name = name;
     }
 
-    public Person ( int age, int height, int weight, int girth, String name) {
 
-        this.age=age;
-        this.height=height;
-        this.weight=weight;
-        this.girth=girth;
-        this.name=name;
+
+    public Person () {
+
+    }
+
+    public void personPrint () {
+        System.out.println("My name is " + name);
+        System.out.println("I'm  " + age);
+        System.out.println("My weight is " + weight);
+        System.out.println("My height is " + height);
+        System.out.println("My girth is " + girth);
+
+
+
     }
 }

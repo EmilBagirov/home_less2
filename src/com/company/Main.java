@@ -3,6 +3,7 @@ package com.company;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.io.File;
@@ -12,44 +13,58 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws FileNotFoundException {
 
-        File dir = new File("C:/Users/bagirov/Desktop/emil/PROJECTS/java_projects");
+        File dir = new File("D:/Dropbox");
         File inputFile = new File(dir, "input1.txt");
         FileInputStream fis = new FileInputStream((inputFile));
-        Scanner sc = new Scanner(fis);
 
         AdultBicycle[] bike = new AdultBicycle[7];
         ArrayList <Person> persons = new ArrayList<Person>();
-        enterPersons(persons, sc);
+
+        Scanner sc1 = new Scanner(System.in);
+        Scanner sc = new Scanner(fis);
+
+        enterPersons(persons,sc1);
+        parseBikes(bike,sc);
+
+        for (Person p:persons) {
+            for (AdultBicycle b:bike) {
+                if (b instanceof MountainBicycle) {
+                    System.out.println("Person "+p.getName()+ " burns "+b.burnedCalories()+" calories on"+((MountainBicycle) b).getType()+" bicycle");
+                }else if (b instanceof RoadBicycle) {
+                    System.out.println("Person "+p.getName()+ " burns "+b.burnedCalories()+" calories on"+((RoadBicycle) b).getType()+" bicycle");
+                }
+            }
+        }
 
     }
 
-        private static void enterPersons (ArrayList<Person> persons, Scanner sc) {
-            int age, weight, height, girth;
-            String name=null;
-                for (Person person: persons) {
-                    System.out.print("Enter person's # " + person + " data: ");
-                    if (sc.hasNextInt() && !(name.equals("done"))) {
-                        age = sc.nextInt();
-                        weight = sc.nextInt();
-                        height = sc.nextInt();
-                        girth = sc.nextInt();
-                        name = sc.nextLine();
-                        Person pers = new Person(age, weight, height, girth, name);
-                        pers.setAge(age);
-                        pers.setWeight(weight);
-                        pers.setHeight(height);
-                        pers.setGirth(girth);
-                        pers.setName(name);
-                        System.out.print("You entered: " + pers.getAge());
+        private static void enterPersons (ArrayList<Person> persons, Scanner sc1) {
+            String name="";
+                for (int i=0; i<5; i++) {
+                    if (!(name.equals("done"))) {
+                        Person pers = new Person();
+                        System.out.println("Enter person " + (i+1) + " name: ");
+                        pers.setName(sc1.nextLine());
+                        System.out.println("Enter person " + (i+1) + " age: ");
+                        pers.setAge(sc1.nextInt());
+                        System.out.println("Enter person " + (i+1) + " weight: ");
+                        pers.setWeight(sc1.nextInt());
+                        System.out.println("Enter person " + (i+1) + " height: ");
+                        pers.setHeight(sc1.nextInt());
+                        System.out.println("Enter person " + (i+1) + " girth: ");
+                        pers.setGirth(sc1.nextInt());
+                        persons.add(pers);
+                        //System.out.print("You entered: " + pers.getAge()+"|"+pers.getWeight()+"|"+pers.getHeight()+"|"+pers.getGirth()+"|"+pers.getName());
                     }
-
+                    else
+                        System.out.println("The end");
                 }
         }
 
 
-    private static void parseBikes(AdultBicycle[] bike, Scanner sc) {
+    private static void parseBikes(AdultBicycle[] bike, Scanner sc) throws FileNotFoundException {
         int i = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
